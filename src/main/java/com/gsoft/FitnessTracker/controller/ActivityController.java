@@ -16,14 +16,23 @@ public class ActivityController {
     private final ActivityService activityService;
 
     @PostMapping("/activity")
-    public ResponseEntity<?> postActivity(@RequestBody ActivityDTO dto){
+    public ResponseEntity<?> postActivity(@RequestBody ActivityDTO dto) {
         ActivityDTO createActivity = activityService.postActivity(dto);
 
-        if (createActivity !=null){
+        if (createActivity != null) {
             return ResponseEntity.status(HttpStatus.CREATED).body(createActivity);
 
-        }else {
+        } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something went wrong");
+        }
+    }
+
+    @GetMapping("/activities")
+    public ResponseEntity<?> getActivities(){
+        try{
+            return ResponseEntity.ok(activityService.getActivities());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Some thing went wrong,");
         }
     }
 

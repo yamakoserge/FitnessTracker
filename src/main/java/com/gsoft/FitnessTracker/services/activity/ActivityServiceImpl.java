@@ -6,13 +6,16 @@ import com.gsoft.FitnessTracker.repository.ActivityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
-public class ActivityServiceImpl implements ActivityService{
+public class ActivityServiceImpl implements ActivityService {
 
     private final ActivityRepository activityRepository;
 
-    public ActivityDTO postActivity(ActivityDTO dto){
+    public ActivityDTO postActivity(ActivityDTO dto) {
         Activity activity = new Activity();
 
         activity.setDate(dto.getDate());
@@ -21,5 +24,10 @@ public class ActivityServiceImpl implements ActivityService{
         activity.setCaloriesBurned(dto.getCaloriesBurned());
 
         return activityRepository.save(activity).getActivityDTO();
+    }
+
+    public List<ActivityDTO> getActivities(){
+        List<Activity> activities = activityRepository.findAll();
+        return activities.stream().map(Activity::getActivityDTO).collect(Collectors.toList());
     }
 }
