@@ -28,7 +28,7 @@ public class ActivityController {
     }
 
     @GetMapping("/activities")
-    public ResponseEntity<?> getActivities(){
+    public ResponseEntity <?> getActivities(){
         try{
             return ResponseEntity.ok(activityService.getActivities());
         }catch (Exception e){
