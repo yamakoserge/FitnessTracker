@@ -1,8 +1,9 @@
 package com.gsoft.FitnessTracker.services.workout;
 
-import com.gsoft.FitnessTracker.dto.WorhoutDTO;
-import com.gsoft.FitnessTracker.entity.Worhout;
-import com.gsoft.FitnessTracker.repository.WorhoutRepository;
+
+import com.gsoft.FitnessTracker.dto.WorkoutDTO;
+import com.gsoft.FitnessTracker.entity.Workout;
+import com.gsoft.FitnessTracker.repository.WorkoutRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,18 +11,16 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class WorkoutServiceImpl implements WorkoutService {
 
-    private final WorhoutRepository worhoutRepository;
+    private final WorkoutRepository workoutRepository;
 
-    public WorhoutDTO postWorhout(WorhoutDTO worhoutDTO){
-        Worhout worhout = new Worhout();
+    private WorkoutDTO postWorkout( WorkoutDTO workoutDTO){
+        Workout workout = new Workout();
 
-        worhout.setDate(worhoutDTO.getDate());
-        worhout.setType(worhoutDTO.getType());
-        worhout.setDuration(worhoutDTO.getDuration());
-        worhout.setCaloriesBurned(worhoutDTO.getCaloriesBurned());
+        workout.setDate(workoutDTO.getDate());
+        workout.setType(workout.getType());
+        workout.setDuration(workout.getDuration());
+        workout.setCaloriesBurned(workout.getCaloriesBurned());
 
-        return worhoutRepository.save(worhout).getWorhoutDto();
-
-
+        return workoutRepository.save(workout).getWorkoutDto();
     }
 }
