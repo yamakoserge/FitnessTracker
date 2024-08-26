@@ -13,13 +13,13 @@ public class WorkoutServiceImpl implements WorkoutService {
 
     private final WorkoutRepository workoutRepository;
 
-    private WorkoutDTO postWorkout( WorkoutDTO workoutDTO){
+    public WorkoutDTO postWorkout( WorkoutDTO workoutDTO){
         Workout workout = new Workout();
 
         workout.setDate(workoutDTO.getDate());
-        workout.setType(workout.getType());
-        workout.setDuration(workout.getDuration());
-        workout.setCaloriesBurned(workout.getCaloriesBurned());
+        workout.setType(workoutDTO.getType());
+        workout.setDuration(workoutDTO.getDuration());
+        workout.setCaloriesBurned(workoutDTO.getCaloriesBurned());
 
         return workoutRepository.save(workout).getWorkoutDto();
     }
