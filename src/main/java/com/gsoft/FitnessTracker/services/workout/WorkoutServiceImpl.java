@@ -7,6 +7,9 @@ import com.gsoft.FitnessTracker.repository.WorkoutRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class WorkoutServiceImpl implements WorkoutService {
@@ -22,5 +25,10 @@ public class WorkoutServiceImpl implements WorkoutService {
         workout.setCaloriesBurned(workoutDTO.getCaloriesBurned());
 
         return workoutRepository.save(workout).getWorkoutDto();
+    }
+
+    public List<WorkoutDTO> getWorkout(){
+        List<Workout> workout = workoutRepository.findAll();
+        return workout.stream().map(Workout::getWorkoutDto).collect(Collectors.toList());
     }
 }
