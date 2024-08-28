@@ -25,7 +25,7 @@ public class Goal {
 
     private boolean achieved;
 
-    public GoalDTO getDTO(){
+    public GoalDTO getGoalDTO(){
         GoalDTO goalDTO = new GoalDTO();
 
         goalDTO.setId(id);
